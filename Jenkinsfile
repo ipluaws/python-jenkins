@@ -14,5 +14,5 @@ node {
        docker.withRegistry('https://registry.hub.docker.com', 'Jenkins') {            
        app.push("${env.BUILD_NUMBER}")   
       }
-	}  
+    }  
 }
