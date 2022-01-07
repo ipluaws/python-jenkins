@@ -1,13 +1,9 @@
-pipeline {
-    agent none
-    stages {
-     def app 
-     stage('clone repository') {
-      checkout scm 
-       }	  
-    }
-     stage('Build docker Image'){
-      app = docker.build("iplusaha25/python-jenkins")
+node {
+     stage 'Checkout source'
+	  checkout scm
+	 
+	 stage('Build docker Image'){
+      def app = docker.build("iplusaha25/python-jenkins")
     }
      stage('Test Image'){
        app.inside {
@@ -15,8 +11,8 @@ pipeline {
       }  
     }
      stage('Push Image'){
-       docker.withRegistry('https://registry.hub.docker.com', 'git') {            
+       docker.withRegistry('https://registry.hub.docker.com', 'Jenkins') {            
        app.push("${env.BUILD_NUMBER}")   
       }
-    }  
+	}  
 }
