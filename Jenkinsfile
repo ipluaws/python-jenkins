@@ -1,8 +1,8 @@
 node {
      stage 'Checkout source'
-	  checkout scm
+      checkout scm
 	 
-	 stage('Build docker Image'){
+     stage('Build docker Image'){
       app = docker.build("iplusaha25/python-jenkins")
     }
      stage('Test Image'){
@@ -14,5 +14,5 @@ node {
        docker.withRegistry('https://registry.hub.docker.com', 'Jenkins') {            
        app.push("${env.BUILD_NUMBER}")   
       }
-	}  
+    }  
 }
