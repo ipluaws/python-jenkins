@@ -1,22 +1,10 @@
-pipeline {
-    agent none
-    stages {
-        stage('Test on Development Environ'){
-            agent {
-                docker {
-                    label 'master'
-                    image 'python:3.7-alpine'
-                }
-            }
-            steps {
-                sh 'pip install -r requirements.txt'
-                sh 'python test.py'
-            }
-            post {
-                always {
-                    junit 'test-reports/*.xml'
-                }
-            }
-        }
-    }
+node {
+     stage 'Checkout source'
+	  checkout scm
+	 
+	 stage 'Run Test Case'
+	  sh 'python test.py'
+	  
+	 stage 'Build Docker image'
+	  def app = docker.build("iplusaha25/python-jenkins")
 }
