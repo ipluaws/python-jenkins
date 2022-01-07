@@ -1,4 +1,8 @@
 FROM tiangolo/uwsgi-nginx-flask:python3.7
-COPY ./requirements.txt /var/www/requirements.txt
-RUN pip install -r /var/www/requirements.txt
-COPY ./app /app
+RUN mkdir -p /app
+COPY requirements.txt /app/requirements.txt
+RUN pip install -r /app/requirements.txt
+COPY . /app
+WORKDIR /app
+EXPOSE 5000
+CMD ["python", "app.py"]
