@@ -15,7 +15,7 @@ pipeline {
       steps{
         script {
           docker.withRegistry('https://registry.hub.docker.com', 'Jenkins' ) {
-            dockerImage.push("${registry.BUILD_NUMBER}")
+            dockerImage.push("$registry:$BUILD_NUMBER")
           }
         }
       }
