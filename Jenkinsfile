@@ -1,7 +1,6 @@
 pipeline {
   environment {
     registry = "iplusaha25/python-jenkins"
-    registryCredential = 'dockerhub'
     dockerImage = ''
   }
   agent any
@@ -16,7 +15,7 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-          docker.withRegistry( 'Jenkins', registryCredential ) {
+          docker.withRegistry('https://registry.hub.docker.com', 'Jenkins' ) {
             dockerImage.push()
           }
         }
