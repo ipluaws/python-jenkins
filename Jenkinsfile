@@ -1,7 +1,6 @@
 pipeline {
   environment {
     registry = "iplusaha25/python-jenkins"
-    dockerImage = ''
   }
   agent any
   stages {
