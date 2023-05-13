@@ -38,7 +38,7 @@ jobs:
       
     - name: Trigger next workflow
       if: ${{ (github.event_name != 'workflow_dispatch' && success()) || (github.event_name == 'workflow_dispatch' && github.event.inputs.trigger_next && success()) }}
-      
+      uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{ secrets.REPO_GHA_PAT }}
         repository: ipluaws/python-jenkins
