@@ -1,4 +1,4 @@
-name: Test coverage
+name: Manual2
 
 on:
   workflow_dispatch:
