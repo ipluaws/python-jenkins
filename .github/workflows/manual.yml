@@ -35,13 +35,23 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: echo "Hello ${{ inputs.name }}"
-      
+    
+        
     - name: Trigger next workflow
       if: ${{ (github.event_name != 'workflow_dispatch' && success()) || (github.event_name == 'workflow_dispatch' && github.event.inputs.trigger_next && success()) }}
       uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{ secrets.REPO_GHA_PAT }}
-        repository: ipluaws/python-jenkins
-        event-type: manual2
+        repository: ipluaws/quotes
+        event-type: manual-parallel
+        client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+        
+    - name: Trigger next workflow
+      if: ${{ (github.event_name != 'workflow_dispatch' && success()) || (github.event_name == 'workflow_dispatch' && github.event.inputs.trigger_next && success()) }}
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.REPO_GHA_PAT }}
+        repository: ipluaws/new
+        event-type: manual-parallel-2
         client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
        
