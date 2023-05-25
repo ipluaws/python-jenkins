@@ -17,10 +17,6 @@ on:
         required: true
         # The data type of the input
         type: string
-      trigger_next:
-        description: 'Whether to run the subsequent workflows after triggering this one manully.'
-        required: false
-        default: false
       
       
 
@@ -42,7 +38,6 @@ jobs:
      steps:
         
      - name: Trigger next workflow
-       if: ${{ (github.event_name != 'workflow_dispatch' && success()) || (github.event_name == 'workflow_dispatch' && github.event.inputs.trigger_next && success()) }}
        uses: peter-evans/repository-dispatch@v1
        with:
          token: ${{ secrets.REPO_GHA_PAT }}
@@ -55,7 +50,6 @@ jobs:
      steps:
         
      - name: Trigger next workflow
-       if: ${{ (github.event_name != 'workflow_dispatch' && success()) || (github.event_name == 'workflow_dispatch' && github.event.inputs.trigger_next && success()) }}
        uses: peter-evans/repository-dispatch@v1
        with:
          token: ${{ secrets.REPO_GHA_PAT }}
