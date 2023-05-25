@@ -17,6 +17,10 @@ on:
         required: true
         # The data type of the input
         type: string
+      trigger_next:
+        description: 'Whether to run the subsequent workflows after triggering this one manully.'
+        required: false
+        default: false
       
       
 
