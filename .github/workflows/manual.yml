@@ -36,22 +36,31 @@ jobs:
     - name: Send greeting
       run: echo "Hello ${{ inputs.name }}"
     
+  workflow1:
+     runs-on: ubuntu-latest
+     steps:
         
-    - name: Trigger next workflow
-      if: ${{ (github.event_name != 'workflow_dispatch' && success()) || (github.event_name == 'workflow_dispatch' && github.event.inputs.trigger_next && success()) }}
-      uses: peter-evans/repository-dispatch@v1
-      with:
-        token: ${{ secrets.REPO_GHA_PAT }}
-        repository: ipluaws/quotes
-        event-type: manual-parallel
-        client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+     - name: Trigger next workflow
+       if: ${{ (github.event_name != 'workflow_dispatch' && success()) || (github.event_name == 'workflow_dispatch' && github.event.inputs.trigger_next && success()) }}
+       uses: peter-evans/repository-dispatch@v1
+       with:
+         token: ${{ secrets.REPO_GHA_PAT }}
+         repository: ipluaws/quotes
+         event-type: manual-parallel
+         client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+         
+  workflow2:
+     runs-on: ubuntu-latest
+     steps:
         
-    - name: Trigger next workflow
-      if: ${{ (github.event_name != 'workflow_dispatch' && success()) || (github.event_name == 'workflow_dispatch' && github.event.inputs.trigger_next && success()) }}
-      uses: peter-evans/repository-dispatch@v1
-      with:
-        token: ${{ secrets.REPO_GHA_PAT }}
-        repository: ipluaws/new
-        event-type: manual-parallel-2
-        client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+     - name: Trigger next workflow
+       if: ${{ (github.event_name != 'workflow_dispatch' && success()) || (github.event_name == 'workflow_dispatch' && github.event.inputs.trigger_next && success()) }}
+       uses: peter-evans/repository-dispatch@v1
+       with:
+         token: ${{ secrets.REPO_GHA_PAT }}
+         repository: ipluaws/new
+         event-type: manual-parallel-2
+         client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+        
+
        
