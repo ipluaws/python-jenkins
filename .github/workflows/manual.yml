@@ -41,7 +41,7 @@ jobs:
        uses: actions/github-script@v4
        with:
          script: |
-           const branch = "${{ github.event.client_payload.branch }}";
+           const branch = "${{ github.event.inputs.branch }}";
            console.log(`Selected Branch: ${branch}`);
            core.setOutput("branch", branch)
      - name: Checkout repository
@@ -64,7 +64,7 @@ jobs:
        uses: actions/github-script@v4
        with:
          script: |
-           const branch = "${{ github.event.client_payload.branch }}";
+           const branch = "${{ github.event.inputs.branch }}";
            console.log(`Selected Branch: ${branch}`);
            core.setOutput("branch", branch)
      - name: Checkout repository
@@ -88,7 +88,7 @@ jobs:
        uses: actions/github-script@v4
        with:
          script: |
-           const branch = "${{ github.event.client_payload.branch }}";
+           const branch = "${{ github.event.inputs.branch }}";
            console.log(`Selected Branch: ${branch}`);
            core.setOutput("branch", branch)
      - name: Checkout repository
@@ -111,7 +111,7 @@ jobs:
        uses: actions/github-script@v4
        with:
          script: |
-           const branch = "${{ github.event.client_payload.branch }}";
+           const branch = "${{ github.event.inputs.branch }}";
            console.log(`Selected Branch: ${branch}`);
            core.setOutput("branch", branch)
      - name: Checkout repository
