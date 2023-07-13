@@ -17,6 +17,10 @@ on:
         required: true
         # The data type of the input
         type: string
+      branch:
+        description: 'Branch to use'
+        required: true
+        type: string
       
       
 
